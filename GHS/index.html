@@ -9,6 +9,37 @@
     <link rel="icon" href="src\images\ico.ico" type="image/x-icon">
     <link rel="stylesheet" href="src\css\style.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    	<style>
+		.colored-text {
+			color: #00ff00;
+			/* 初始颜色（绿色） */
+			animation: colorFlowAnimation 5s infinite linear;
+		}
+
+		@keyframes colorFlowAnimation {
+
+			0%,
+			100% {
+				color: #00ff00;
+				/* 初始颜色（绿色） */
+			}
+
+			25% {
+				color: #ff0000;
+				/* 红色 */
+			}
+
+			50% {
+				color: #0000ff;
+				/* 蓝色 */
+			}
+
+			75% {
+				color: #f7f750;
+				/* 黄色 */
+			}
+		}
+	</style>
     <title>GHS 2023</title>
 
   </head>
@@ -27,7 +58,7 @@
     <section class="home">
       <div class="home-content">
         <h3>Hello!</h3>
-        <h1>我们是GHS</h1>
+        <h1><span class="colored-text">我们是GHS</span></h1>
         <h3><span class="multiple-text"></span></h3>
         <a href="about" class="btn">了解更多</a>
       </div>
