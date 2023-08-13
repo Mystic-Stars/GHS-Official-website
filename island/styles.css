@@ -27,6 +27,24 @@ main {
   animation: slideTop 1s ease forwards;
 }
 
+a {
+
+  color: #3555BC;
+
+  text-decoration: none;
+
+}
+
+
+
+a:hover {
+
+  color: #f6dc50;
+
+  text-decoration: underline;
+
+}
+
 .intro {
   display: flex;
   font-size: 20px;
@@ -39,15 +57,18 @@ main {
   flex: 1;
   padding: 2rem;
 }
+
 .rules {
   flex: 1;
   padding: 10rem;
   font-size: 22px;
 }
-.test-head{
+
+.test-head {
   font-size: 30px;
   padding: 2rem;
 }
+
 .ui-icon {
   display: block;
   text-indent: -99999px;
