@@ -168,7 +168,10 @@ body {
     color: #b7b2a9;
     border: 2px solid #b7b2a9;
 }
-
+.branding__3Hjip {
+    display: none !important;
+  }
+  
 /* 动画 */
 
 @keyframes slideRight {
