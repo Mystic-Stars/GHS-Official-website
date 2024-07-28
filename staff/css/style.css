@@ -27,7 +27,6 @@ div img:hover {
 	margin: 110px -1.5%;
 }
 
-/*= common css to all effects =*/
 .single-member {
 	border-radius: 20px;
 	width: 280px;
@@ -72,9 +71,6 @@ p {
 	margin-bottom: 10px;
 }
 
-/*= common css to all effects end =*/
-
-/*= effect-2 css =*/
 .effect-2 {
 	max-height: 302px;
 	min-height: 302px;
@@ -106,4 +102,3 @@ p {
 	vertical-align: bottom;
 }
 
-/*= effect-2 css end =*/
