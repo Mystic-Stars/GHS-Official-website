@@ -1,104 +1,126 @@
 @import url(../../src/css/style.css);
 
+:root {
+	--bg-color: rgb(248, 246, 231);
+    --text-color: #000000;
+    --shadow-color: #b7b2a9;
+    --accent-color: #f6dc50;
+    --card-bg: #ffffff;
+}
+
+.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --shadow-color: #4a4a4a;
+    --accent-color: #ffd700;
+    --card-bg: #2c2c2c;
+}
+
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 div img {
-	transition: all .4s;
+    transition: all .4s;
 }
 
 div img:hover {
-	transform: scale(1.1);
-	cursor: pointer;
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .container {
-	margin: 0 auto;
-	max-width: 1000px;
+    margin: 0 auto;
+    max-width: 1000px;
 }
 
 .row {
-	width: 103%;
-	float: left;
-	margin: 110px -1.5%;
+    width: 103%;
+    float: left;
+    margin: 110px -1.5%;
 }
 
 .single-member {
-	border-radius: 20px;
-	width: 280px;
-	float: left;
-	margin: 30px 2.5%;
-	background-color: #fff;
-	box-shadow: 0 0 20px #b7b2a9;
-	text-align: center;
-	position: relative;
-	animation: slideTop 1s ease forwards;
+    border-radius: 20px;
+    width: 280px;
+    float: left;
+    margin: 30px 2.5%;
+    background-color: var(--card-bg);
+    box-shadow: 0 0 20px var(--shadow-color);
+    text-align: center;
+    position: relative;
+    animation: slideTop 1s ease forwards;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .single-member:hover {
-	box-shadow: 0 0 30px #b7b2a9;
+    box-shadow: 0 0 30px var(--shadow-color);
 }
 
 .member-image img {
-	max-width: 100%;
-	margin-top: -30px;
-	vertical-align: middle;
+    max-width: 100%;
+    margin-top: -30px;
+    vertical-align: middle;
 }
 
 h3 {
-	font-size: 22px;
-	font-weight: normal;
-	margin: 10px 0 0;
-	text-transform: uppercase;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 10px 0 0;
+    text-transform: uppercase;
 }
 
 h5 {
-	font-size: 14px;
-	font-weight: 300;
-	margin: 0 0 15px;
-	line-height: 22px;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0 0 15px;
+    line-height: 22px;
 }
 
 p {
-	font-size: 12px;
-	font-weight: 300;
-	line-height: 22px;
-	padding: 0 30px;
-	margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 0 30px;
+    margin-bottom: 10px;
 }
 
 .effect-2 {
-	max-height: 302px;
-	min-height: 302px;
-	overflow: hidden;
+    max-height: 302px;
+    min-height: 302px;
+    overflow: hidden;
 }
 
 .effect-2 h3 {
-	padding-top: 7px;
-	line-height: 33px;
+    padding-top: 7px;
+    line-height: 33px;
 }
 
 .effect-2 .member-image {
-	border-bottom: 5px solid #f6dc50;
-	height: 220px;
-	overflow: hidden;
-	width: 100%;
-	transition: 0.4s;
-	display: inline-block;
-	float: none;
-	vertical-align: middle;
+    border-bottom: 5px solid var(--accent-color);
+    height: 220px;
+    overflow: hidden;
+    width: 100%;
+    transition: 0.4s;
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
 }
 
 .effect-2 .member-info {
-	transition: 0.4s;
+    transition: 0.4s;
 }
 
 .effect-2 .member-image img {
-	width: 100%;
-	vertical-align: bottom;
+    width: 100%;
+    vertical-align: bottom;
 }
-
