@@ -1,0 +1,429 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url(../../src/css/style.css);
+
+:root {
+	--primary-color: #FFD700;
+	--secondary-color: #FFA500;
+	--text-color: #333333;
+	--bg-color: rgb(248, 246, 231);
+	--card-bg: rgba(255, 255, 255, 0.8);
+	--shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	--transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+	--highlight-color: #FF4500;
+}
+
+.dark-mode {
+	--primary-color: #FFD700;
+	--secondary-color: #FFA500;
+	--text-color: #E0E0E0;
+	--bg-color: #1A1A1A;
+	--card-bg: rgba(40, 40, 40, 0.8);
+	--shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	--highlight-color: #FF6347;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	line-height: 1.6;
+	padding: 0rem 1.5rem;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.projects {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+	gap: 3rem;
+}
+
+.project-card {
+	background-color: var(--card-bg);
+	border-radius: 24px;
+	box-shadow: var(--shadow);
+	overflow: hidden;
+	transition: var(--transition);
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
+	position: relative;
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 215, 0, 0.2);
+	animation: cardPulse 4s infinite alternate;
+}
+
+@keyframes cardPulse {
+	0% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(1.03);
+	}
+}
+
+.project-card:hover {
+	transform: translateY(-12px) scale(1.05);
+	box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+	animation: none;
+}
+
+.project-image-container {
+	position: relative;
+	overflow: hidden;
+	height: 240px;
+}
+
+.project-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: var(--transition);
+}
+
+.project-card:hover .project-image {
+	transform: scale(1.1) rotate(2deg);
+}
+
+.project-content {
+	padding: 2.5rem;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.project-title {
+	font-size: 1.75rem;
+	font-weight: 700;
+	margin-bottom: 1.25rem;
+	color: var(--secondary-color);
+	position: relative;
+	padding-bottom: 0.5rem;
+	transition: var(--transition);
+}
+
+.project-title::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 40px;
+	height: 3px;
+	background-color: var(--primary-color);
+	transition: var(--transition);
+}
+
+.project-card:hover .project-title {
+	transform: translateX(10px);
+}
+
+.project-card:hover .project-title::after {
+	width: 80px;
+}
+
+.project-description {
+	font-size: 1.1rem;
+	color: var(--text-color);
+	margin-bottom: 2rem;
+	flex-grow: 1;
+	line-height: 1.8;
+	transition: var(--transition);
+}
+
+.project-card:hover .project-description {
+	transform: translateY(-5px);
+}
+
+.project-tech {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+.tech-tag {
+	background-color: rgba(255, 215, 0, 0.2);
+	color: var(--secondary-color);
+	padding: 0.6rem 1.2rem;
+	border-radius: 50px;
+	font-size: 0.9rem;
+	font-weight: 500;
+	transition: var(--transition);
+}
+
+.tech-tag:hover {
+	background-color: var(--primary-color);
+	color: var(--bg-color);
+	transform: translateY(-3px) rotate(3deg);
+}
+
+.project-authors {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.project-author {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+	color: var(--text-color);
+	transition: var(--transition);
+	padding: 0.5rem 1rem;
+	border-radius: 16px;
+	background-color: rgba(255, 215, 0, 0.1);
+	position: relative;
+}
+
+.project-author:hover {
+	background-color: rgba(255, 215, 0, 0.2);
+	color: var(--secondary-color);
+	transform: translateY(-3px);
+}
+
+.author-avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	margin-right: 0.75rem;
+	object-fit: cover;
+	border: 2px solid var(--primary-color);
+	transition: var(--transition);
+}
+
+.project-author:hover .author-avatar {
+	transform: scale(1.1);
+}
+
+.author-details {
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	right: 0;
+	background-color: var(--card-bg);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+	padding: 1.5rem;
+	border-radius: 16px;
+	box-shadow: var(--shadow);
+	opacity: 0;
+	visibility: hidden;
+	transition: var(--transition);
+	z-index: 10;
+	transform: translateY(10px);
+}
+
+.project-author:hover .author-details {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.author-details p {
+	margin-bottom: 0.5rem;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	color: var(--text-color);
+}
+
+.author-details strong {
+	color: var(--secondary-color);
+	font-weight: 600;
+}
+
+@media (max-width: 768px) {
+	.projects {
+		grid-template-columns: 1fr;
+	}
+}
+
+@keyframes cardAppear {
+	from {
+		opacity: 0;
+		transform: translateY(50px) scale(0.9);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+.section-title {
+	font-size: 3rem;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 4rem;
+	color: var(--secondary-color);
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+	position: relative;
+	padding-bottom: 1rem;
+	animation: titleAppear 1s ease-out;
+}
+
+@keyframes titleAppear {
+	from {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.section-title::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100px;
+	height: 4px;
+	background-color: var(--primary-color);
+	border-radius: 2px;
+	animation: lineExpand 1.5s ease-out;
+}
+
+@keyframes lineExpand {
+	from {
+		width: 0;
+	}
+
+	to {
+		width: 100px;
+	}
+}
+
+.glass-effect {
+	background: var(--card-bg);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.scroll-top {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: var(--primary-color);
+	color: var(--bg-color);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 24px;
+	cursor: pointer;
+	transition: var(--transition);
+	opacity: 0;
+	visibility: hidden;
+}
+
+.scroll-top.visible {
+	opacity: 1;
+	visibility: visible;
+}
+
+.scroll-top:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+
+
+
+/* 新增：搜索栏样式 */
+.search-container {
+	margin-bottom: 2rem;
+	display: flex;
+	justify-content: center;
+}
+
+.search-input {
+	width: 100%;
+	max-width: 500px;
+	padding: 0.8rem 1.5rem;
+	font-size: 1rem;
+	border: none;
+	border-radius: 50px;
+	background-color: var(--card-bg);
+	color: var(--text-color);
+	box-shadow: var(--shadow);
+	transition: var(--transition);
+}
+
+.search-input:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px var(--primary-color);
+}
+
+/* 更新：过滤器样式 */
+.filter-container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+.filter-button {
+	padding: 0.5rem 1rem;
+	font-size: 0.9rem;
+	border: none;
+	border-radius: 50px;
+	background-color: var(--card-bg);
+	color: var(--text-color);
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.3s ease;
+
+}
+
+.filter-button:hover,
+.filter-button.active {
+    background-color: var(--primary-color); /* 直接改变背景色 */
+    color: var(--bg-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* 新增：动画效果 */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.fade-in {
+	animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 新增：高亮样式 */
+.highlight {
+	background-color: var(--highlight-color);
+	color: var(--bg-color);
+	padding: 0.1em 0.2em;
+	border-radius: 3px;
+	transition: all 0.3s ease;
+}
