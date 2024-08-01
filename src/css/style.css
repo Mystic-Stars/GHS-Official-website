@@ -240,3 +240,75 @@ body {
 .theme-toggle:hover {
     transform: scale(1.1) rotate(15deg);
 }
+@media screen and (max-width: 1024px) {
+  .header {
+    padding: 20px 5%;
+  }
+  .navbar {
+    position: static;
+    width: 100%;
+    display: none;
+  }
+  .navbar.active {
+    display: block;
+  }
+  .navbar a {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar a {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .home {
+    padding: 70px 5% 0;
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .home-content {
+    max-width: 100%;
+  }
+  .home-img img {
+    max-width: 70%;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+  .home-content h1 {
+    font-size: 40px;
+  }
+  .home-content h3 {
+    font-size: 24px;
+  }
+  .btn {
+    font-size: 14px;
+    padding: 10px 24px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .home-content h1 {
+    font-size: 32px;
+  }
+  .home-content h3 {
+    font-size: 20px;
+  }
+}
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+@media screen and (max-width: 1024px) {
+  .menu-icon {
+    display: block;
+  }
+  .navbar {
+    display: none;
+  }
+}
