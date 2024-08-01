@@ -91,6 +91,212 @@
   <script src="https://unpkg.com/typed.js@2.0.132/dist/typed.umd.js"></script>
   <script src="src\js\text.js"></script>
   <script src="src\js\darkmode.js"></script>
+  <style>
+
+    :root {
+      --primary-color: #FFD700;
+      --secondary-color: #FFF7D6;
+      --text-color: #333333;
+      --bg-color: #FFFFFF;
+      --border-color: #FFE066;
+    }
+
+    .dark-mode {
+      --primary-color: #FFD700;
+      --secondary-color: #2C2A20;
+      --text-color: #E0E0E0;
+      --bg-color: #1A1A1A;
+      --border-color: #3D3A2E;
+      --shadow-color: rgba(0, 0, 0, 0.2);
+      --hover-shadow: rgba(255, 215, 0, 0.1);
+    }
+
+
+    #olympicFooter {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 3rem;
+      font-family: 'Poppins', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+    }
+
+    #olympicFooter h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: var(--text-color);
+      text-align: center;
+      position: relative;
+    }
+
+    #olympicFooter h2::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background-color: var(--primary-color);
+      margin: 10px auto 0;
+    }
+
+    #olympicFooter .medal-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      background-color: var(--secondary-color);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    #olympicFooter .medal-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+    }
+
+    #olympicFooter .medal-info {
+      display: flex;
+      align-items: center;
+    }
+
+    #olympicFooter .medal-info img {
+      width: 3.5rem;
+      height: 2.3rem;
+      margin-right: 1rem;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #olympicFooter .country {
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+
+    #olympicFooter .rank {
+      font-size: 0.9rem;
+      color: #666;
+      margin-left: 1rem;
+      background-color: var(--primary-color);
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    #olympicFooter .medal-count {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    #olympicFooter #updateInfo {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 2rem;
+      text-align: center;
+      font-style: italic;
+    }
+
+    @media (max-width: 480px) {
+      #olympicFooter {
+        padding: 2rem 1rem;
+      }
+
+      #olympicFooter h2 {
+        font-size: 1.7rem;
+      }
+
+      #olympicFooter .medal-item {
+        padding: 1rem;
+      }
+
+      #olympicFooter .country {
+        font-size: 1.1rem;
+      }
+
+      #olympicFooter .rank {
+        font-size: 0.8rem;
+      }
+
+      #olympicFooter .medal-count {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <footer id="olympicFooter">
+    <h2>奥运奖牌榜</h2>
+    <div id="chinaData">
+      <!-- Dynamic content will be inserted here -->
+    </div>
+    <div id="updateInfo">最后更新时间: <span id="lastUpdate"></span></div>
+  </footer>
+
+  <script>
+    class OlympicFooter {
+      constructor() {
+        this.init();
+      }
+
+      async init() {
+        try {
+          await this.updateMedalData();
+          this.displayFooter();
+          this.scheduleNextUpdate();
+        } catch (error) {
+          console.error("Error initializing the Olympic Footer:", error);
+        }
+      }
+
+      async updateMedalData() {
+        try {
+          const response = await fetch('https://60s.viki.moe/olympic');
+          if (!response.ok) throw new Error('Network response was not ok');
+          const data = await response.json();
+          const chinaData = data.data.find(item => item.noc === "CHN");
+
+          localStorage.setItem('chinaOlympicData', JSON.stringify(chinaData));
+          localStorage.setItem('lastUpdate', new Date().toISOString());
+
+          return chinaData;
+        } catch (error) {
+          console.error("Failed to fetch data:", error);
+          return JSON.parse(localStorage.getItem('chinaOlympicData')) || null;
+        }
+      }
+
+      createChinaDataElement(data) {
+        return `
+                <div class="medal-item">
+                    <div class="medal-info">
+                        <img src="${data.flagUrl}" alt="China flag">
+                        <span class="country">${data.description}</span>
+                        <span class="rank">排名: ${data.rank}</span>
+                    </div>
+                    <span class="medal-count">🥇${data.gold} 🥈${data.silver} 🥉${data.bronze}</span>
+                </div>
+            `;
+      }
+
+      async displayFooter() {
+        const chinaData = await this.updateMedalData();
+        const footer = document.querySelector('#olympicFooter');
+        const dataElement = this.createChinaDataElement(chinaData);
+        footer.querySelector('#chinaData').innerHTML = dataElement;
+        footer.querySelector('#lastUpdate').textContent = new Date(localStorage.getItem('lastUpdate')).toLocaleString();
+      }
+
+      scheduleNextUpdate() {
+        setTimeout(() => {
+          this.displayFooter();
+          this.scheduleNextUpdate();
+        }, 60000); // Update every 60 seconds (1 minute)
+      }
+    }
+
+    new OlympicFooter();
+  </script>
+
 </body>
 
 </html>
