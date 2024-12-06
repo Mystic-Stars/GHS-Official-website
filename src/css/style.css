@@ -61,12 +61,6 @@ body {
   z-index: 100;
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
 .logo {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-semibold);
@@ -102,7 +96,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 70px 10% 0;
+  padding: 0 10%;
 }
 
 .home-content {
@@ -478,7 +472,7 @@ body {
     }
 }
 
-/* 确��内容不会被底部主题切换按钮遮挡 */
+/* 确内容不会被底部主题切换按钮遮挡 */
 body {
     padding-bottom: 70px;
 }
