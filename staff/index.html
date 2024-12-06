@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <html lang="zh_CN">
-
+    <!-- 
+    样式指南:
+    1. 成员卡片样式类:
+        - single-member: 基础卡片样式
+        - effect-2: 添加悬停效果
+        
+    2. 成员信息样式:
+        - member-image: 图片容器
+        - member-info: 信息容器
+        
+    3. 文字渐变效果:
+        基础用法: <h3 class="gradient-text [效果类名]">成员名字</h3>
+        
+        可用效果类名:
+        - pink-purple: 粉紫渐变
+        - blue-green: 蓝绿渐变
+        - yellow-orange: 黄橙渐变
+        - purple-pink: 紫粉渐变
+        - green-blue: 绿蓝渐变
+        - orange-red: 橙红渐变
+        - blue-purple: 蓝紫渐变
+        - green-yellow: 绿黄渐变
+        - rainbow: 彩虹效果
+        - metallic: 金属效果
+        
+    4. 特殊效果:
+        - neon: 霓虹效果，可与渐变叠加
+        示例: <h3 class="gradient-text rainbow neon">成员名字</h3>
+        
+    5. 暗色模式适配:
+        所有效果已自动适配暗色模式
+        
+    6. 响应式设计:
+        - 自动适应不同屏幕尺寸
+        - 移动端优化显示效果
+    -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GHS人员名单">
-    <meta name="keywords" content="GHS,Garbage Human Studio,Box world">
+    <meta name="keywords" content="GHS,Garbage Human Studio,Box world">  
+    <!-- 样式表引入 -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="../src/css/darklight.css">
     <link rel="icon" href="../src/images/ico.ico" type="image/x-icon">
     <title>GHS Staff</title>
+    
+    <!-- Howxm 统计脚本 -->
     <script>
         function _howxm() { _howxmQueue.push(arguments) }
         window._howxmQueue = window._howxmQueue || [];
@@ -282,6 +320,14 @@
         </div>
     </main>
     <script src="../src/js/darkmode.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 为每个成员卡片添加动画序号
+        document.querySelectorAll('.single-member').forEach((card, index) => {
+            card.style.setProperty('--animation-order', index + 1);
+        });
+    });
+    </script>
 </body>
 
 </html>
