@@ -11,6 +11,17 @@
   --nav-link-hover-color: #797572;
   --button-text-color: #1f242d;
   --shadow-color: #85837f;
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+  --font-size-3xl: 48px;
+  --line-height-base: 1.6;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
 
 .dark-mode {
@@ -32,7 +43,9 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
   background: var(--main-bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
@@ -55,10 +68,10 @@ body {
 }
 
 .logo {
-  font-size: 50px;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
   color: var(--logo-color);
   text-decoration: none;
-  font-weight: 600;
   cursor: default;
   opacity: 0;
   animation: slideRight 1s ease forwards;
@@ -66,10 +79,10 @@ body {
 
 .navbar a {
   display: inline-block;
-  font-size: 18px;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
   color: var(--nav-link-color);
   text-decoration: none;
-  font-weight: 500;
   margin-left: 35px;
   transition: 0.3s;
   opacity: 0;
@@ -97,8 +110,8 @@ body {
 }
 
 .home-content h3 {
-  font-size: 32px;
-  font-weight: 700;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
   opacity: 0;
   animation: slideBottom 1s ease forwards;
   animation-delay: .7s;
@@ -115,8 +128,8 @@ body {
 }
 
 .home-content h1 {
-  font-size: 56px;
-  font-weight: 700;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
   margin: -3px 0;
   opacity: 0;
   animation: slideRight 1s ease forwards;
@@ -311,4 +324,208 @@ body {
   .navbar {
     display: none;
   }
+}
+
+/* 移动端适配优化 */
+@media screen and (max-width: 1024px) {
+    /* 头部导航适配 */
+    .header, .header2 {
+        padding: 15px 5%;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .logo {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .navbar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .navbar a {
+        margin: 0;
+        font-size: 16px;
+        padding: 8px 15px;
+        background: var(--card-bg);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* 主页内容适配 */
+    .home {
+        padding: 100px 5% 0;
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .home-content {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .home-content h1 {
+        font-size: 40px;
+    }
+
+    .home-content h3 {
+        font-size: 24px;
+    }
+
+    .home-img img {
+        max-width: 70%;
+        margin: 0 auto;
+    }
+
+    /* 主题切换按钮适配 */
+    .theme-switch-wrapper {
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+    }
+}
+
+/* 小屏幕设备适配 */
+@media screen and (max-width: 480px) {
+    .logo {
+        font-size: 28px;
+    }
+
+    .navbar a {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .home-content h1 {
+        font-size: 32px;
+    }
+
+    .home-content h3 {
+        font-size: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .home-img img {
+        max-width: 85%;
+    }
+
+    /* 改进主题切换按钮在小屏幕上的显示 */
+    .theme-switch-wrapper {
+        padding: 3px 8px;
+    }
+
+    .theme-switch-label {
+        font-size: 12px;
+    }
+}
+
+/* 暗色模式下的移动端优化 */
+.dark-mode .navbar a {
+    background: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 平板设备适配 */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .logo {
+        font-size: 32px;
+    }
+
+    .navbar a {
+        font-size: 15px;
+        padding: 7px 14px;
+    }
+
+    .home-content h1 {
+        font-size: 36px;
+    }
+
+    .home-content h3 {
+        font-size: 22px;
+    }
+
+    .home-img img {
+        max-width: 75%;
+    }
+}
+
+/* 横屏模式优化 */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    .home {
+        padding-top: 80px;
+        min-height: auto;
+    }
+
+    .home-img img {
+        max-width: 50%;
+    }
+
+    .home-content {
+        padding: 20px 0;
+    }
+}
+
+/* 确��内容不会被底部主题切换按钮遮挡 */
+body {
+    padding-bottom: 70px;
+}
+
+/* 添加平滑滚动效果 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 触摸设备的悬停效果优化 */
+@media (hover: hover) {
+    .navbar a:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* 针对高分辨率设备的优化 */
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .home-content h1 {
+        font-size: 64px;
+    }
+
+    .home-content h3 {
+        font-size: 36px;
+    }
+}
+
+/* 添加加载动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
 }
